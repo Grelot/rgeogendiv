@@ -6,8 +6,6 @@ Geographic genetic diversity
 
 ## Installation
 
-open a R session
-
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) { install.packages("devtools") }
 library(devtools)
