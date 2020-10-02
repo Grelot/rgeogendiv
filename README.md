@@ -1,8 +1,10 @@
-# geogendivr
+# rgeogendiv
 [![Build
-Status](https://travis-ci.com/Grelot/geogendivr.svg?branch=master)](https://travis-ci.com/github/Grelot/rgeogendiv)
+Status](https://travis-ci.com/Grelot/rgeogendiv.svg?branch=master)](https://travis-ci.com/github/Grelot/rgeogendiv)
 
-# Installation
+Geographic genetic diversity
+
+## Installation
 
 open a R session
 
@@ -10,19 +12,23 @@ open a R session
 if (!requireNamespace("devtools", quietly = TRUE)) { install.packages("devtools") }
 library(devtools)
 devtools::install_github("Grelot/rgeogendiv")
+
+```
 library(rgeogendiv)
 ```
 
-# Quick start demo
+## Getting started
 
 A tutorial using ready-to-use data is available as a vignette here :
 
 NA
 
 
+___________________________________________________________
 
 
-# Note
+
+## Note
 
 Do you own R package: https://guerinpe.com/articles/guide-to-creating-r-package/
 
