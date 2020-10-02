@@ -1,0 +1,32 @@
+---
+title: "Spatial studies of genetic diversity within species"
+author: "Pierre-Edouard GUERIN, Stephanie MANEL, EPHE, CNRS"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{map_marine}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+## Prerequisites
+
+```{r setup}
+library(rgeogendiv)
+```
+
+
+
+
+## BOLD dataset
+
+**BOLD** (Barcode Of Life Database) is a database of Barcode DNA sequences of georeferenced specimen that closely approximate species.
+
+We use the package `bold` to download a set of georeferenced sequences for the *Pomacanthidae* taxon order.
+
+```{r}
+library(bold)
+taxonRequest <- "Pomacanthidae"
+resBold <- bold_seqspec(taxon=taxonRequest, sepfasta=TRUE)
+```
