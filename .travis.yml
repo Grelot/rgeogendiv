@@ -1,0 +1,34 @@
+language: r
+cache: packages
+
+warnings_are_errors: FALSE
+r_build_args: --as-cran --no-build-vignettes --ignore-vignettes
+r_check_args: --as-cran --no-build-vignettes --ignore-vignettes
+
+before_install:
+  - sudo apt-get update
+
+
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
+      - libgdal-dev
+      - libgsl0-dev # for topicmodels
+      - libxml2-dev # for XML, a dependency of quanteda
+      - libudunits2-dev
+      - libproj-dev
+      - libgeos-dev
+      - gdal-bin
+      - proj-bin
+      - libblas-dev
+      - liblapack-dev
+
+r_packages:
+  - data.table
+  - dplyr
+  - sf
+  - ade4
+  - testthat
+  - tidyverse
+  - rfishbase
