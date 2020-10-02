@@ -23,10 +23,38 @@ library(rgeogendiv)
 
 **BOLD** (Barcode Of Life Database) is a database of Barcode DNA sequences of georeferenced specimen that closely approximate species.
 
-We use the package `bold` to download a set of georeferenced sequences for the *Pomacanthidae* taxon order.
+We use the package `bold` to download a set of georeferenced sequences for the *Pomacanthidae* taxon order request.
 
 ```{r}
 library(bold)
 taxonRequest <- "Pomacanthidae"
-resBold <- bold_seqspec(taxon=taxonRequest, sepfasta=TRUE)
+resBold <- bold::bold_seqspec(taxon=taxonRequest, sepfasta=TRUE)
 ```
+
+
+
+## Prepare dataset
+### 1. Mutate and filter raw BOLD dataset
+
+Filter and mutate georeferenced sequence dataset to produce a curated dataframe with rows as individual specimen and columns as specimen information. It adds a new column sequence with DNA sequences as string.
+
+The function prepare_bold_res apply 5 filters :
+
+* Select specimen with given marker_code
+* Remove specimen with no species_name information
+* Remove specimen with no lat or lon coordinates information
+* Remove specimen with IUAPC ambiguities on DNA sequences
+* Select specimen with DNA sequences within a given range of lengths in bp
+
+```{r}
+## filter and mutate
+prparedResBold <- prepare_bold_res(resBold,
+                                   marker_code="COI-5P",
+                                   species_names=TRUE, 
+                                   coordinates=TRUE, 
+                                   ambiguities=TRUE, 
+                                   min_length=420,
+                                   max_length=720
+                                  )
+```
+
