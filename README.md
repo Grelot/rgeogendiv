@@ -18,9 +18,9 @@ library(rgeogendiv)
 
 ## Getting started
 
-A tutorial using ready-to-use data is available as a vignette here :
+A tutorial is available as a vignette: https://rpubs.com/peguerin/rgeogendiv
 
-NA
+
 
 
 ___________________________________________________________
