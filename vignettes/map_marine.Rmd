@@ -48,7 +48,7 @@ The function prepare_bold_res apply 5 filters :
 
 ```{r}
 ## filter and mutate
-prparedResBold <- prepare_bold_res(resBold,
+predResBold <- prepare_bold_res(resBold,
                                    marker_code="COI-5P",
                                    species_names=TRUE, 
                                    coordinates=TRUE, 
@@ -57,4 +57,18 @@ prparedResBold <- prepare_bold_res(resBold,
                                    max_length=720
                                   )
 ```
+
+
+### 2. Verify species names with FishBase
+
+As we work on fishes and later with Reef Life Survey dataset, we search for synonyms into FishBase to verify species names from the BOLD dataset.
+
+The function `fishbase_verify_bold_species` checks species_name field and seek for FishBase synonyms. Then it adds a new field 'fishbase_species_name'.
+
+```{r}
+## validate species names
+predResBold.verified <- fishbase_verify_bold_species(prparedResBold)
+```
+
+
 
