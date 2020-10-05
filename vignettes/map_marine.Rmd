@@ -66,7 +66,7 @@ As we work on fishes and later with Reef Life Survey dataset, we search for syno
 The function `fishbase_verify_bold_species` checks species_name field and seek for FishBase synonyms. Then it adds a new field 'fishbase_species_name'.
 
 ```{r}
-## validate species names
+## verify species names
 predResBold.verified <- fishbase_verify_bold_species(prparedResBold)
 ```
 
