@@ -67,8 +67,15 @@ The function `fishbase_verify_bold_species` checks species_name field and seek f
 
 ```{r}
 ## verify species names
-predResBold.verified <- fishbase_verify_bold_species(prparedResBold)
+predResBold.verified <- fishbase_verify_bold_species(predResBold)
 ```
 
 
+### 3. Transform curated BOLD data.frame into spatialpoints object from sp package
+
+To work with spatial environmental data, we transform our BOLD data.frame into spatialpoints object with the right projection.
+
+```{r}
+predResBold.verified.sp <- spatialpoints_bold_df(predResBold.verified, projectionCRS="+init=epsg:3347")
+```
 
