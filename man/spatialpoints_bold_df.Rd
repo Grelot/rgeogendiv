@@ -8,15 +8,15 @@ spatialpoints_bold_df(dfBold, projectionCRS = "+init=epsg:3347")
 }
 \arguments{
 \item{dfBold}{A data.frame with specimen sequences as row and 81 descriptors as column.
-Mandatory fields :
-lon
-lat
-species_name
-fishbase_species_name
+Mandatory fields:
+lon,
+lat,
+species_name,
+fishbase_species_name,
 genus_name,
 family_name,
-order_name
-class_name
+order_name,
+class_name,
 sequence}
 
 \item{projectionCRS}{Interface class to the PROJ projection and transformation system.

@@ -5,15 +5,15 @@ library(sp)
 #' @description Given a BOLD individual georeferenced sequences dataframe and a projection CRS,
 #' this function will return a spatialpoints object with all coordinates of BOLD specimen.
 #' @param dfBold A data.frame with specimen sequences as row and 81 descriptors as column.
-#' Mandatory fields :
-#' lon
-#' lat
-#' species_name
-#' fishbase_species_name
+#' Mandatory fields:
+#' lon,
+#' lat,
+#' species_name,
+#' fishbase_species_name,
 #' genus_name,
 #' family_name,
-#' order_name
-#' class_name
+#' order_name,
+#' class_name,
 #' sequence
 #' @param projectionCRS Interface class to the PROJ projection and transformation system.
 #' Default value is "+init=epsg:3347"
