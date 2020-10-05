@@ -6,7 +6,7 @@ library(rnaturalearth)
 
 #' @export
 #'
-#' @title Build a map grid
+#' @title Build a map grid spatialpoints
 #'
 #' @description The function download from NaturalEarth database a worldmap raster.
 #'  A grid is built from this raster.
@@ -17,7 +17,7 @@ library(rnaturalearth)
 #' Default value is "+proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +datum=WGS84 +ellps=WGS84 +units=m +no_defs"
 #'
 #' @return a spatialpoint object of all sites of the grid into the projection `projectionCRS` given as argument
-grid_coordinates <- function (siteSize=260000,
+grid_spatialpoints <- function (siteSize=260000,
                               projectionCRS="+proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +datum=WGS84 +ellps=WGS84 +units=m +no_defs") {
   # download the data
   coastlines <- rnaturalearth::ne_download(scale = 110, type = "coastline", category="physical", load=TRUE)
