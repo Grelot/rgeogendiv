@@ -30,7 +30,7 @@ grid_spatialpolygons <- function (siteSize=260000,
                                                       c(coast.bbox[1],coast.bbox[4]),
                                                       c(coast.bbox[1],coast.bbox[2])))))
   grid <- sf::st_make_grid(worldtangle, cellsize=siteSize)
-  grid.sp <- as_Spatial(grid)
+  grid.sp <- sf::as_Spatial(grid)
   sp::proj4string(grid.sp) <- projectionCRS
   return(grid.sp)
 }
