@@ -21,7 +21,6 @@ grid_spatialpoints <- function (siteSize=260000,
                               projectionCRS="+proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +datum=WGS84 +ellps=WGS84 +units=m +no_defs") {
   # download the data
   coastlines <- rnaturalearth::ne_download(scale = 110, type = "coastline", category="physical", load=TRUE)
-  coastlines <- rgdal::readOGR("ne-coastlines-10m/ne_10m_coastline.shp")
   coastlines.proj <- sp::spTransform(coastlines,
                                      sp::CRS(projectionCRS))
   coast.bbox <- sf::st_bbox(coastlines.proj)
