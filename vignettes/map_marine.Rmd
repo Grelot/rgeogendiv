@@ -71,22 +71,34 @@ predResBold.verified <- fishbase_verify_bold_species(predResBold)
 ```
 
 
-### 3. Transform curated BOLD data.frame into spatialpoints object from sp package
 
-To work with spatial environmental data, we transform our BOLD data.frame into spatialpoints object with the right projection.
+## Build grid world map 
 
-```{r}
-predResBold.verified.sp <- spatialpoints_bold_df(predResBold.verified, projectionCRS="+init=epsg:3347")
-```
-
-
-## 
-
-First, let’s download world coastlines data from natural earth.
+The grid is composed of nested squares of `siteSize` meters called site.
 
 ```{r}
-grid.sp <- grid_spatialpoints(siteSize=260000,
+grid.sp <- grid_spatialpolygons(siteSize=260000,
                  projectionCRS="+proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +datum=WGS84 +ellps=WGS84 +units=m +no_defs"
                  )
 ```
 
+
+## Generate the matrix of presence/absence of a sepecimen in sites from the worldmap grid
+
+
+```{r}
+specimenIntersectSites <- specimen_intersect_site(specimen.df=predResBold.verified,
+                     grid.sp=grid.sp)
+
+```
+
+## Nucleotide diversity
+
+We gather together specimen from the same species located within the same site of the grid. Then sequences are aligned and nucleotide diversity is calculated for each species within each site.
+
+```{r}
+nucdivSpecies <- species_nucleotide_diversity(specimen.df=predResBold.verified, 
+                             sequenceIntersectSites=specimenIntersectSites,
+                             MinimumNumberOfSequencesBySpecies=3
+                             ) 
+```
