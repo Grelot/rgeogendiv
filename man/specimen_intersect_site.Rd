@@ -7,7 +7,7 @@
 specimen_intersect_site(
   specimen.df,
   grid.sp,
-  projectionCRS = CRS(proj4string(grid.sp))@projargs[1]
+  projectionCRS = sp::CRS(sp::proj4string(grid.sp))@projargs[1]
 )
 }
 \arguments{

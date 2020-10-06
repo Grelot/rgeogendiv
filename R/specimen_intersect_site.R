@@ -14,7 +14,7 @@ library(rgeos)
 #' and row as specimen spatial points ID
 specimen_intersect_site <- function (specimen.df,
                                   grid.sp,
-                                  projectionCRS= CRS(proj4string(grid.sp))@projargs[1]) {
+                                  projectionCRS= sp::CRS(sp::proj4string(grid.sp))@projargs[1]) {
   grid.sp.proj <- sp::spTransform(grid.sp,
                             sp::CRS(projectionCRS))
   specimen.sp.proj <- spatialpoints_bold_df(specimen.df,
