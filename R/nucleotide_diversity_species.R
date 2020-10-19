@@ -102,7 +102,7 @@ number_sequences_by_points <- function(sequenceIntersectSites) {
 #' @param MinimumNumberOfSequencesBySpecies an integer minimum number of sequences representatives of a species in a site
 #' @return a dataframe with taxonomy and nucleotide diversity and number of sequences by species
 #' species with not enough sequences to calculate nucleotide diversity are removed
-species_nucleotide_diversity <- function(specimen.df, sequenceIntersectSites, MinimumNumberOfSequencesBySpecies) {
+nucleotide_diversity_species <- function(specimen.df, sequenceIntersectSites, MinimumNumberOfSequencesBySpecies) {
   ## keep only buffer with at least 3 sequences
   specimen.df.selectedCol <- data.table::data.table(species_name=specimen.df$species_name,
                                                 fishbase_species_name=specimen.df$fishbase_species_name,
@@ -129,3 +129,8 @@ species_nucleotide_diversity <- function(specimen.df, sequenceIntersectSites, Mi
   nucDivPts.df <- dplyr::bind_rows(nucDivPts)
   return(nucDivPts.df)
 }
+
+
+
+
+
