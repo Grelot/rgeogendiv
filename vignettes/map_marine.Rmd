@@ -46,7 +46,7 @@ The function prepare_bold_res apply 5 filters :
 * Remove specimen with IUAPC ambiguities on DNA sequences
 * Select specimen with DNA sequences within a given range of lengths in bp
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## filter and mutate
 predResBold <- prepare_bold_res(resBold,
                                    marker_code="COI-5P",
@@ -65,7 +65,7 @@ As we work on fishes, we search for synonyms into FishBase to verify species nam
 
 The function `fishbase_verify_bold_species` checks `species_name` field and seek for FishBase synonyms. Then it adds a new field 'fishbase_species_name'.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 ## verify species names
 predResBold.verified <- fishbase_verify_bold_species(predResBold)
 ```
@@ -88,17 +88,46 @@ grid.sp <- grid_spatialpolygons(siteSize=260000,
 
 ```{r message=FALSE, warning=FALSE}
 specimenIntersectSites <- specimen_intersect_site(specimen.df=predResBold.verified,
-                     grid.sp=grid.sp)
+                                                  grid.sp=grid.sp)
 
 ```
 
 ## Nucleotide diversity
 
+### By species
+
 We gather together specimen from the same species located within the same site of the grid. Then sequences are aligned and nucleotide diversity is calculated for each species within each site.
 
 ```{r message=FALSE, warning=FALSE}
-nucdivSpecies <- species_nucleotide_diversity(specimen.df=predResBold.verified, 
+nucdivSpecies <- nucleotide_diversity_species(specimen.df=predResBold.verified, 
                              sequenceIntersectSites=specimenIntersectSites,
                              MinimumNumberOfSequencesBySpecies=3
                              ) 
 ```
+
+### By sites
+
+Once we got species nucleotide diversity, we calculate mean species nucleotide diversity by site of the worldmap grid.
+
+```{r message=FALSE, warning=FALSE}
+nucdivSites <- nucleotide_diversity_sites(nucdivSpecies)
+```
+
+
+## Worldmap grid of mean species nucleotide diversity
+
+We assign a mean species nucleotide diversity value to each site in the worldmap grid.
+
+```{r message=FALSE, warning=FALSE}
+nucdivGrid <- nucleotide_diversity_grid(nucdivSites, grid.sp)
+```
+
+Then, we can print the wordldmap grid of nucleotide diversity.
+
+```{r message=FALSE, warning=FALSE, fig.width=8, fig.height=8}
+gg <- plot_grid(nucdivGrid)
+gg
+```
+
+
+
