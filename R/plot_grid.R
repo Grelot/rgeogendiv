@@ -133,19 +133,29 @@ plot_grid <- function(nucdivGrid, limites=c(0.001,0.002,0.003,0.005,0.01,0.025))
   namedVal <- color_GD(nucdivGrid@data$nucdivMean, limites)
   names(namedVal) <- tag_GD(nucdivGrid@data$nucdivMean, limites)
   #levels(sites.df$nucDivInterval) <- sites.df$nucDivColor
-  gg <- ggplot() +
-    geom_polygon(data=coastlines.fort, aes(x=long, y=lat, group=group),
+  gg <- ggplot2::ggplot() +
+    ggplot2::geom_polygon(data=coastlines.fort, ggplot2::aes(x=long,
+                                                             y=lat,
+                                                             group=group),
                                         fill="grey", color= "black",size=0.25) +
-    geom_polygon(data=lakelines.fort, aes(x=long, y=lat, group=group),
+    ggplot2::geom_polygon(data=lakelines.fort, ggplot2::aes(x=long,
+                                                            y=lat,
+                                                            group=group),
                                         fill="white", color= "black",size=0.25) +
-    geom_path(data=riverlines.fort, aes(x=long, y=lat, group=group),
+    ggplot2::geom_path(data=riverlines.fort, ggplot2::aes(x=long,
+                                                          y=lat,
+                                                          group=group),
                                         color="white",size=0.35) +
-    theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-    geom_polygon(data =sites.df, aes(x=long, y=lat, group = group,
+    ggplot2::theme_bw() +
+    ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
+                   panel.grid.minor = ggplot2::element_blank())+
+    ggplot2::geom_polygon(data =sites.df, ggplot2::aes(x=long,
+                                                       y=lat,
+                                                       group = group,
                                      fill = factor(nucDivInterval)),
                                      colour="white")+
-    scale_fill_manual(values = namedVal)+
-    guides(fill = guide_legend(title = "Genetic diversity"))
+    ggplot2::scale_fill_manual(values = namedVal)+
+    ggplot2::guides(fill = ggplot2::guide_legend(title = "Genetic diversity"))
   return(gg)
 }
 
