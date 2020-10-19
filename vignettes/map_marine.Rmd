@@ -124,7 +124,7 @@ nucdivGrid <- nucleotide_diversity_grid(nucdivSites, grid.sp)
 
 Then, we can print the wordldmap grid of nucleotide diversity.
 
-```{r message=FALSE, warning=FALSE, fig.width=8, fig.height=8}
+```{r message=FALSE, warning=FALSE, fig.width=7, fig.height=4}
 gg <- plot_grid(nucdivGrid)
 gg
 ```
