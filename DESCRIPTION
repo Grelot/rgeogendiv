@@ -39,7 +39,8 @@ Imports:
     rgdal,
     geosphere,
     data.table,
-    DECIPHER(>= 2.14.0)
+    DECIPHER(>= 2.14.0),
+    maptools
 Suggests: 
     testthat,
     knitr,
