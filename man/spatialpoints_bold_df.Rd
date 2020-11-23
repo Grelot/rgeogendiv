@@ -4,7 +4,11 @@
 \alias{spatialpoints_bold_df}
 \title{Transform curated BOLD data.frame into spatialpoints object from `sp` package}
 \usage{
-spatialpoints_bold_df(dfBold, projectionCRS = "+init=epsg:3347")
+spatialpoints_bold_df(
+  dfBold,
+  projectionCRS = "+init=epsg:3347",
+  fishbaseValidation = FALSE
+)
 }
 \arguments{
 \item{dfBold}{A data.frame with specimen sequences as row and 81 descriptors as column.

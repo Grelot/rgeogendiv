@@ -8,7 +8,8 @@ species_nucleotide_diversity_site(
   site.ids,
   specimen.df,
   sequenceIntersectSites,
-  MinimumNumberOfSequencesBySpecies
+  MinimumNumberOfSequencesBySpecies,
+  fishbaseValidation = FALSE
 )
 }
 \arguments{

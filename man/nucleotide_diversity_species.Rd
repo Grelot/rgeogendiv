@@ -7,7 +7,8 @@
 nucleotide_diversity_species(
   specimen.df,
   sequenceIntersectSites,
-  MinimumNumberOfSequencesBySpecies
+  MinimumNumberOfSequencesBySpecies,
+  fishbaseValidation = FALSE
 )
 }
 \arguments{
