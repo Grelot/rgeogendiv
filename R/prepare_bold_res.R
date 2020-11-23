@@ -28,12 +28,12 @@ prepare_bold_res <- function (bold_res, marker_code="",
     }
   }
   filteredBold <- bold_res$data %>%
-    { if (species_names) dplyr::filter(., species_name != "") } %>%
-    { if (marker_code != "") dplyr::filter(., markercode == marker_code) } %>%
-    { if (coordinates) dplyr::filter(., !is.na(lat)) %>% dplyr::filter(., !is.na(lon)) } %>%
+    { if (species_names) dplyr::filter(., species_name != "") else .} %>%
+    { if (marker_code != "") dplyr::filter(., markercode == marker_code) else .} %>%
+    { if (coordinates) dplyr::filter(., !is.na(lat)) %>% dplyr::filter(., !is.na(lon)) else .} %>%
     dplyr::mutate(sequence=as.character(bold_res$fasta[processid])) %>%
     dplyr::filter(., nchar(sequence) > min_length) %>%
     dplyr::filter(., nchar(sequence) < max_length) %>%
-    { if (ambiguities) dplyr::filter(., !grepl("I",sequence)) }
+    { if (ambiguities) dplyr::filter(., !grepl("I",sequence)) else .}
   return(filteredBold)
 }
