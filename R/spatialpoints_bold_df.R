@@ -19,20 +19,30 @@ library(sp)
 #' Default value is "+init=epsg:3347"
 #' @return a spatialpoints object with taxonomic information and DNA sequence
 #'
-spatialpoints_bold_df <- function (dfBold, projectionCRS="+init=epsg:3347") {
+spatialpoints_bold_df <- function (dfBold, projectionCRS="+init=epsg:3347", fishbaseValidation=FALSE) {
   ## define coordinates of BOLD points as spatialpoints and projection in meter unit
   bold.coo <- data.frame(lon=dfBold$lon,
                          lat= dfBold$lat
   )
   ## define information species/sequence related to each point BOLD
-  bold.info <- data.frame(species_name=dfBold$species_name,
-                         fishbase_species_name=dfBold$fishbase_species_name,
-                         genus_name=dfBold$genus_name,
-                         family_name=dfBold$family_name,
-                         order_name=dfBold$order_name,
-                         class_name=dfBold$class_name,
-                         sequence=dfBold$sequence
-  )
+  if(fishbaseValidation) {
+    bold.info <- data.frame(species_name=dfBold$species_name,
+                           fishbase_species_name=dfBold$fishbase_species_name,
+                           genus_name=dfBold$genus_name,
+                           family_name=dfBold$family_name,
+                           order_name=dfBold$order_name,
+                           class_name=dfBold$class_name,
+                           sequence=dfBold$sequence
+     )
+  } else {
+    bold.info <- data.frame(species_name=dfBold$species_name,
+                            genus_name=dfBold$genus_name,
+                            family_name=dfBold$family_name,
+                            order_name=dfBold$order_name,
+                            class_name=dfBold$class_name,
+                            sequence=dfBold$sequence
+    )
+  }
   bold.pts <- sp::SpatialPointsDataFrame(bold.coo,
                                          data=bold.info,
                                          proj4string=sp::CRS("+init=epsg:4326")
