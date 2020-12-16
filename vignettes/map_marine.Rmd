@@ -40,15 +40,15 @@ Filter and mutate georeferenced sequence dataset to produce a curated dataframe 
 
 The function prepare_bold_res apply 5 filters :
 
-* Select specimen with given marker_code
-* Remove specimen with no species_name information
-* Remove specimen with no lat or lon coordinates information
+* Select specimen with given `marker_code`
+* Remove specimen with no `species_name` information
+* Remove specimen with no `lat` or `lon` coordinates information
 * Remove specimen with IUAPC ambiguities on DNA sequences
 * Select specimen with DNA sequences within a given range of lengths in bp
 
 ```{r message=FALSE, warning=FALSE}
 ## filter and mutate
-predResBold <- prepare_bold_res(resBold,
+preResBold <- prepare_bold_res(resBold,
                                    marker_code="COI-5P",
                                    species_names=TRUE, 
                                    coordinates=TRUE, 
@@ -59,27 +59,13 @@ predResBold <- prepare_bold_res(resBold,
 ```
 
 
-### 2. Verify species names with FishBase
-
-As we work on fishes, we search for synonyms into FishBase to verify species names from the BOLD dataset.
-
-The function `fishbase_verify_bold_species` checks `species_name` field and seek for FishBase synonyms. Then it adds a new field 'fishbase_species_name'.
-
-```{r message=FALSE, warning=FALSE}
-## verify species names
-predResBold.verified <- fishbase_verify_bold_species(predResBold)
-```
-
-
 
 ## Build grid world map 
 
-The grid is composed of nested squares of `siteSize` meters called site.
+The grid is composed of nested squares of `siteSize` meters called site. (default projection is Behrman)
 
 ```{r message=FALSE, warning=FALSE}
-grid.sp <- grid_spatialpolygons(siteSize=260000,
-                 projectionCRS="+proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +datum=WGS84 +ellps=WGS84 +units=m +no_defs"
-                 )
+grid.sp <- grid_spatialpolygons(siteSize=260000)
 ```
 
 
@@ -87,8 +73,7 @@ grid.sp <- grid_spatialpolygons(siteSize=260000,
 
 
 ```{r message=FALSE, warning=FALSE}
-specimenIntersectSites <- specimen_intersect_site(specimen.df=predResBold.verified,
-                                                  grid.sp=grid.sp)
+specimenIntersectSites <- specimen_intersect_site(specimen.df=preResBold, grid.sp=grid.sp)
 
 ```
 
@@ -99,7 +84,7 @@ specimenIntersectSites <- specimen_intersect_site(specimen.df=predResBold.verifi
 We gather together specimen from the same species located within the same site of the grid. Then sequences are aligned and nucleotide diversity is calculated for each species within each site.
 
 ```{r message=FALSE, warning=FALSE}
-nucdivSpecies <- nucleotide_diversity_species(specimen.df=predResBold.verified, 
+nucdivSpecies <- nucleotide_diversity_species(specimen.df=preResBold, 
                              sequenceIntersectSites=specimenIntersectSites,
                              MinimumNumberOfSequencesBySpecies=3
                              ) 
@@ -124,7 +109,7 @@ nucdivGrid <- nucleotide_diversity_grid(nucdivSites, grid.sp)
 
 Then, we can print the wordldmap grid of nucleotide diversity.
 
-```{r message=FALSE, warning=FALSE, fig.width=7, fig.height=4}
+```{r message=FALSE, warning=FALSE, error=FALSE, fig.width=8, fig.height=5}
 gg <- plot_grid(nucdivGrid)
 gg
 ```
