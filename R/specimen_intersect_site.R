@@ -14,12 +14,14 @@ library(rgeos)
 #' and row as specimen spatial points ID
 specimen_intersect_site <- function (specimen.df,
                                   grid.sp,
-                                  projectionCRS= sp::CRS(sp::proj4string(grid.sp))@projargs[1]) {
+                                  projectionCRS= slot(grid.sp, 'proj4string')@projargs,
+                                  fishbaseValidation = FALSE) {
   grid.sp.proj <- sp::spTransform(grid.sp,
-                            sp::CRS(projectionCRS))
+                            sp::CRS(SRS_string = projectionCRS))
   specimen.sp.proj <- spatialpoints_bold_df(specimen.df,
-                                       projectionCRS=projectionCRS)
-  specimenIntersectSites <- rgeos::gIntersects(grid.sp.proj , specimen.sp.proj, byid = TRUE)
+                                       projectionCRS = projectionCRS,
+                                       fishbaseValidation = fishbaseValidation)
+  specimenIntersectSites <- rgeos::gIntersects(grid.sp.proj, specimen.sp.proj, byid = TRUE)
   return(specimenIntersectSites)
 
 }
