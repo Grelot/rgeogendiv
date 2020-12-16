@@ -34,9 +34,9 @@ resBold <- bold::bold_seqspec(taxon=taxonRequest, sepfasta=TRUE)
 
 
 ## Prepare dataset
-### 1. Mutate and filter raw BOLD dataset
 
-Filter and mutate georeferenced sequence dataset to produce a curated dataframe with rows as individual specimen and columns as specimen information. It adds a new column sequence with DNA sequences as string.
+
+We filter and mutate georeferenced sequence dataset from boldsystems.org in order to produce a curated dataframe with rows as individual specimen and columns as specimen information. We add a new column `sequence` with DNA sequences as string.
 
 The function prepare_bold_res apply 5 filters :
 
@@ -62,7 +62,7 @@ preResBold <- prepare_bold_res(resBold,
 
 ## Build grid world map 
 
-The grid is composed of nested squares of `siteSize` meters called site. (default projection is Behrman)
+The grid is composed of nested squares of `siteSize` meters that we call *site*. By default, the grid is built on a map in Behrmann projection. In this example we set a grid with sites with a diameter of 260 kilometers.
 
 ```{r message=FALSE, warning=FALSE}
 grid.sp <- grid_spatialpolygons(siteSize=260000)
