@@ -27,6 +27,7 @@ addons:
 
 r_packages:
   - data.table
+  - usethis
   - devtools
   - roxygen2
   - testthat
