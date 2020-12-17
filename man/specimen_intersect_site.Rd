@@ -7,7 +7,8 @@
 specimen_intersect_site(
   specimen.df,
   grid.sp,
-  projectionCRS = sp::CRS(sp::proj4string(grid.sp))@projargs[1]
+  projectionCRS = slot(grid.sp, "proj4string")@projargs,
+  fishbaseValidation = FALSE
 )
 }
 \arguments{

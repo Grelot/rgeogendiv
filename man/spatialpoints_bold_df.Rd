@@ -6,7 +6,7 @@
 \usage{
 spatialpoints_bold_df(
   dfBold,
-  projectionCRS = "+init=epsg:3347",
+  projectionCRS = "EPSG:4326",
   fishbaseValidation = FALSE
 )
 }
