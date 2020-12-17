@@ -1,7 +1,7 @@
 Package: rgeogendiv
 Type: Package
 Title: Geographic Genetic Diversity
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "Pierre-Edouard",
            family = "GUERIN",
@@ -19,7 +19,8 @@ biocViews:
 Imports:
     rlang (>= 0.4.5),
     dplyr (>= 0.8.3),
-    sf (>= 0.8),
+    sp (>= 1.4.2),
+    sf (>= 0.9),
     nlme (>= 3.1),
     backports (>= 1.1.5),
     blob (>= 1.2.1),
@@ -33,15 +34,15 @@ Imports:
     Biostrings (>= 2.54.0),
     pegas (>= 0.13),
     rfishbase (>= 3.0.4),
-    rnaturalearth,
-    rnaturalearthdata,
-    rgeos,
-    raster,
-    rgdal,
-    geosphere,
-    data.table,
+    rnaturalearth (>= 0.1.0),
+    rnaturalearthdata (>= 0.1.0),
+    rgeos (>= 0.5.3),
+    raster (>= 3.3.7),
+    rgdal (>= 1.5.12),
+    geosphere (>= 1.5.10), 
+    data.table (>= 1.12.8),
     DECIPHER(>= 2.14.0),
-    maptools
+    maptools (>= 1.0.1)
 Suggests: 
     testthat,
     knitr,
