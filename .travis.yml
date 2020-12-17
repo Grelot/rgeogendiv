@@ -23,6 +23,8 @@ addons:
       - proj-bin
       - libblas-dev
       - liblapack-dev
+      - build-dep
+      - libcurl4-gnutls-dev
 
 r_packages:
   - data.table
