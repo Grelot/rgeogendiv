@@ -28,14 +28,9 @@ addons:
 
 r_packages:
   - data.table
-  - usethis
-  - devtools
-  - roxygen2
-  - testthat
   - dplyr
   - sf
   - ade4
-  - testthat
   - tidyverse
   - rfishbase
 
