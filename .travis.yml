@@ -26,6 +26,8 @@ addons:
 
 r_packages:
   - data.table
+  - devtools
+  - roxygen2
   - testthat
   - dplyr
   - sf
@@ -33,3 +35,7 @@ r_packages:
   - testthat
   - tidyverse
   - rfishbase
+
+after_success:
+  - Rscript -e 'devtools::install();devtools::test()'
+
