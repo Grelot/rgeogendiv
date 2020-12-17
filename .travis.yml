@@ -34,6 +34,4 @@ r_packages:
   - tidyverse
   - rfishbase
 
-after_success:
-  - Rscript -e 'devtools::install();devtools::test()'
 
