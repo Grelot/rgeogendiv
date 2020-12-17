@@ -23,6 +23,7 @@ addons:
       - proj-bin
       - libblas-dev
       - liblapack-dev
+      - libgit2-dev
       - libcurl4-gnutls-dev
 
 r_packages:
