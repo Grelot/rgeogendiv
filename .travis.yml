@@ -26,6 +26,7 @@ addons:
 
 r_packages:
   - data.table
+  - testthat
   - dplyr
   - sf
   - ade4
